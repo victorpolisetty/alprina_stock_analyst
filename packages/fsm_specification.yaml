@@ -1,0 +1,30 @@
+alphabet_in:
+  - DONE
+  - NO_MAJORITY
+  - RESET_TIMEOUT
+  - ROUND_TIMEOUT
+  - NOT_TRIGGERED
+default_start_state: RegistrationRound
+final_states: []
+label: AlprinaStockAnalystAbciApp
+start_states:
+  - RegistrationRound
+states:
+  - RegistrationRound
+  - ResetAndPauseRound
+  - CollectStockDataRound
+  - CalculatePositionHealthRound
+transition_func:
+(RegistrationRound, DONE): CollectStockDataRound
+
+(CollectStockDataRound, DONE): AggregateFinancialReportRound
+(CollectStockDataRound, ROUND_TIMEOUT): ResetAndPauseRound
+(CollectStockDataRound, NO_MAJORITY): ResetAndPauseRound
+
+(AggregateFinancialReportRound, DONE): ResetAndPauseRound
+(AggregateFinancialReportRound, ROUND_TIMEOUT): ResetAndPauseRound
+(AggregateFinancialReportRound, NO_MAJORITY): ResetAndPauseRound
+
+(ResetAndPauseRound, DONE): CollectStockDataRound
+(ResetAndPauseRound, NO_MAJORITY): ResetAndPauseRound
+(ResetAndPauseRound, RESET_TIMEOUT): ResetAndPauseRound
