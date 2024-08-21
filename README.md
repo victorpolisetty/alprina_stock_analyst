@@ -1,44 +1,29 @@
-# Dev-template
+# Alprina Stock Analyst
 
-A template for development with the open-autonomy framework. Find the documentation [here](https://docs.autonolas.network).
+The application is build on top of the open-autonomy framework.
 
-## System requirements
+This allows us to define a multi-agent system secured on chain, using the autonolas stack.
 
-- Python `>=3.8`
-- [Tendermint](https://docs.tendermint.com/v0.34/introduction/install.html) `==0.34.19`
-- [IPFS node](https://docs.ipfs.io/install/command-line/#official-distributions) `==0.6.0`
-- [Pip](https://pip.pypa.io/en/stable/installation/)
-- [Poetry](https://python-poetry.org/)
-- [Docker Engine](https://docs.docker.com/engine/install/)
-- [Docker Compose](https://docs.docker.com/compose/install/)
 
-Alternatively, you can fetch this docker image with the relevant requirements satisfied:
 
-> **_NOTE:_**  Tendermint and IPFS dependencies are missing from the image at the moment.
+## Running a single agent locally
 
+### Dependencies
+- Tendermint
 ```bash
-docker pull valory/open-autonomy-user:latest
-docker container run -it valory/open-autonomy-user:latest
+wget https://github.com/tendermint/tendermint/releases/download/v0.34.11/tendermint_0.34.11_linux_amd64.tar.gz
 ```
 
-## This repository contains:
 
-- Empty directory `packages` which acts as the local registry
 
-- .env file with Python path updated to include packages directory
-
-## How to use
-
-Create a virtual environment with all development dependencies:
+First you must create a local tendermint node to run the agent
+```bash
+sudo rm -r ~/.tendermint/data/ && sudo tendermint init validator && sudo cp -r /root/.tendermint ~/  && sudo chown -R (whoami):(whoami) ~/.tendermint
+```
+Then, you can fetch the agent;
 
 ```bash
-poetry shell
-poetry install
+Todo
 ```
 
-Get developing...
-
-## Useful commands:
-
-Check out the `Makefile` for useful commands, e.g. `make formatters`, `make generators`, `make code-checks`, as well
-as `make common-checks-1`. To run tests use the `autonomy test` command. Run `autonomy test --help` for help about its usage.
+And finally, you can run it;
